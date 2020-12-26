@@ -1,8 +1,13 @@
 const NotefulService = { 
-    getNotesandFolders(knex) {
-        //return knex.select('*').from('notes_table','folders_table')
-        return knex.join('notes_table', 'folders_table').select('*')
+
+    getAllData(knex) {
+        //return knex.select('*').from('folders_table').from('notes_table')
+        //return knex.join('folders_table', 'notes_table').select('*')
+        let notes = knex.select('*').from('notes_table')
+        let folders = knex.select('*').from('folders_table')
+        return notes.concat(folders)  
     },
+
     getAllNotes(knex) {
         return knex.select('*').from('notes_table')
     },
@@ -12,7 +17,7 @@ const NotefulService = {
     getAllFolders(knex) {
         return knex.select('*').from('folders_table')
     },
-    getFolderById(knex, folderid) {
+    getNotesByFolderId(knex, folderid) {
         return knex.select('*').from('notes_table').where('folderid', folderid)
     }, 
     deleteNote(knex, id) {

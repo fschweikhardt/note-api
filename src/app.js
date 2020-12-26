@@ -7,6 +7,7 @@ const { NODE_ENV } = require('./config')
 const errorHandler = require('./error-handler')
 const validateBearerToken = require('./validate-bearer-token')
 const NotefulRouter = require('./NotefulRouter')
+const FoldersRouter = require('./folders/FoldersRouter')
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(cors())
 app.use(validateBearerToken)
 
 app.use(NotefulRouter)
+app.use('/api/folders', FoldersRouter);
 
 // app.get('/', (req, res) => {
 //   res.send('Hello, world!')

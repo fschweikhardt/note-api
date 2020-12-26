@@ -6,24 +6,14 @@ const bodyParser = express.json()
 //const xss = require('xss')
 
 NotefulRouter
-    .route('/notes'&&'/')
-    // .get((req,res,next) => {
-    //     NotefulService
-    //         .getAllNotes(req.app.get('db'))
-    //         .then(data => {
-    //             res.json(data)
-    //             console.log(data)
-    //         })
-    //         .catch(next)
-    // })
+    .route('/')
     .get((req,res,next) => {
-        NotefulService.getNotesandFolders(req.app.get('db'))
+        NotefulService.getAllNotes(req.app.get('db'))
             .then(data => {
                 res.json(data)
-                console.log(data)
             })
             .catch(next)
-    })
+        })
 
 NotefulRouter
     .route('/notes/:noteId')
@@ -40,26 +30,25 @@ NotefulRouter
     .delete((req,res,next) => {
         const { noteId } = req.params
         NotefulService.deleteNote(req.app.get('db'), noteId )
-            .then(data => {
-                res.json(data)
-                console.log(data)
-            })
+            //.then(console.log('note deleted'))
+            //.then(res.status(204).end())
             .catch(next)
     })
     
 
-NotefulRouter
-    .route('folder/:folderid')
-    .get((req,res,next) => {
-        const { folderid } = req.params
-        NotefulService.getFolderById(req.app.get('db'), folderid)
-            .then(data => {
-                res.json(data)
-                console.log(data)
-            })
-            .catch(next)
-    })
+// NotefulRouter
+//     .route('folder/:folderid')
+//     .get((req,res,next) => {
+//         const { folderid } = req.params
+//         NotefulService.getNotesByFolderId(req.app.get('db'), folderid)
+//             .then(data => {
+//                 res.json(data)
+//                 console.log(data)
+//             })
+//             .catch(next)
+//     })
     //.delete
+
 
 NotefulRouter
     .route('/add-note')
@@ -70,7 +59,7 @@ NotefulRouter
         NotefulService.addNote(req.app.get('db'), newNote)
             .then(data => {
                 res.json(data)
-                console.log(data)
+                //console.log(data)
             })
             .catch(next)
     })
