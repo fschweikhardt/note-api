@@ -7,8 +7,6 @@ const db = knex({
   connection: DB_URL
 })
 
-//db.select('*').from('notes_table').then(d=> console.log(d))
-
 app.set('db', db)
 
 app.listen(PORT, () => {

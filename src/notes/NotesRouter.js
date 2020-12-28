@@ -22,7 +22,6 @@ NotesRouter
         NotesService.getNoteById(req.app.get('db'), noteId)
             .then(data => {
                 res.json(data)
-                console.log(data)
             })
             .catch(next)
 
@@ -30,25 +29,8 @@ NotesRouter
     .delete((req,res,next) => {
         const { noteId } = req.params
         NotesService.deleteNote(req.app.get('db'), noteId )
-            //.then(console.log('note deleted'))
-            //.then(res.status(204).end())
             .catch(next)
     })
-    
-
-// NotesRouter
-//     .route('folder/:folderid')
-//     .get((req,res,next) => {
-//         const { folderid } = req.params
-//         NotesService.getNotesByFolderId(req.app.get('db'), folderid)
-//             .then(data => {
-//                 res.json(data)
-//                 console.log(data)
-//             })
-//             .catch(next)
-//     })
-    //.delete
-
 
 NotesRouter
     .route('/add-note')
@@ -63,19 +45,5 @@ NotesRouter
             })
             .catch(next)
     })
-
-// NotesRouter
-//     .route('/add-folder')
-//     .post(bodyParser, (req, res, next) => {
-//         //let modified = now()
-//         const { title } = req.body
-//         const newFolder = { title }
-//         NotesService.addFolder(req.app.get('db'), newFolder)
-//             .then(data => {
-//                 res.json(data)
-//                 console.log(data)
-//             })
-//             .catch(next)
-//     })
 
 module.exports = NotesRouter

@@ -22,7 +22,6 @@ FoldersRouter
         FoldersService.getNotesByFolderId(req.app.get('db'), folderid)
             .then(data => {
                 res.json(data)
-                console.log(data)
             })
             .catch(next)
     })

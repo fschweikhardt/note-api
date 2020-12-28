@@ -23,10 +23,6 @@ app.use(validateBearerToken)
 app.use(NotesRouter)
 app.use(FoldersRouter);
 
-// app.get('/', (req, res) => {
-//   res.send('Hello, world!')
-//   })
-
 app.use(errorHandler)
     
 module.exports = app
