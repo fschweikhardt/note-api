@@ -1,13 +1,5 @@
 const NotesService = { 
 
-    getAllData(knex) {
-        //return knex.select('*').from('folders_table').from('notes_table')
-        //return knex.join('folders_table', 'notes_table').select('*')
-        let notes = knex.select('*').from('notes_table')
-        let folders = knex.select('*').from('folders_table')
-        return notes.concat(folders)  
-    },
-
     getAllNotes(knex) {
         return knex.select('*').from('notes_table')
     },
