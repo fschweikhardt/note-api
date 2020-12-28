@@ -64,18 +64,18 @@ NotefulRouter
             .catch(next)
     })
 
-NotefulRouter
-    .route('/add-folder')
-    .post(bodyParser, (req, res, next) => {
-        //let modified = now()
-        const { title } = req.body
-        const newFolder = { title }
-        NotefulService.addFolder(req.app.get('db'), newFolder)
-            .then(data => {
-                res.json(data)
-                console.log(data)
-            })
-            .catch(next)
-    })
+// NotefulRouter
+//     .route('/add-folder')
+//     .post(bodyParser, (req, res, next) => {
+//         //let modified = now()
+//         const { title } = req.body
+//         const newFolder = { title }
+//         NotefulService.addFolder(req.app.get('db'), newFolder)
+//             .then(data => {
+//                 res.json(data)
+//                 console.log(data)
+//             })
+//             .catch(next)
+//     })
 
 module.exports = NotefulRouter
