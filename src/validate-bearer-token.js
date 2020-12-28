@@ -1,4 +1,4 @@
-const apiToken = process.env.API_TOKEN
+const apiToken = process.env.API_KEY
 const logger = require('./logger')
 
 function validateBearerToken(req, res, next) {

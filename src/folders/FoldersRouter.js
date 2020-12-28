@@ -6,7 +6,7 @@ const bodyParser = express.json()
 //const xss = require('xss')
 
 FoldersRouter
-    .route('/')
+    .route('/api/folders')
     .get((req,res,next) => {
         FoldersService.getAllFolders(req.app.get('db'))
             .then(data => {
@@ -37,7 +37,7 @@ FoldersRouter
     
 
 FoldersRouter
-    .route('folder/:folderid')
+    .route('api/folders/:folderid')
     .get((req,res,next) => {
         const { folderid } = req.params
         FoldersService.getNotesByFolderId(req.app.get('db'), folderid)

@@ -1,4 +1,4 @@
-const NotefulService = { 
+const NotesService = { 
 
     getAllData(knex) {
         //return knex.select('*').from('folders_table').from('notes_table')
@@ -37,4 +37,4 @@ const NotefulService = {
     }
 }
 
-module.exports = NotefulService
+module.exports = NotesService
