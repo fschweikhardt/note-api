@@ -24,7 +24,7 @@ app.use(NotesRouter)
 app.use(FoldersRouter);
 
 app.get('/', (req, res) => {
-  res.send('Hello, worldz!')
+  res.send('Hello, worldzz!')
 })
 
 app.use(errorHandler)
