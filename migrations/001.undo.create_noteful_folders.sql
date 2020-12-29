@@ -1,2 +1,1 @@
-
-drop table if exists folders_table;
+DROP TABLE IF EXISTS folders_table;

@@ -23,6 +23,10 @@ app.use(cors())
 app.use(NotesRouter)
 app.use(FoldersRouter);
 
+app.get('/', (req, res) => {
+  res.send('Hello, worldz!')
+})
+
 app.use(errorHandler)
     
 module.exports = app

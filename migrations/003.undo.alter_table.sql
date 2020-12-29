@@ -1,1 +1,0 @@
-alter table notes_table drop column if exists modified;

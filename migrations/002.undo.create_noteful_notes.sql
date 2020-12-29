@@ -1,1 +1,1 @@
-drop table if exists notes_table;
+DROP TABLE IF EXISTS notes_table;
