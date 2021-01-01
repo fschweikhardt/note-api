@@ -17,6 +17,9 @@ const NotesService = {
             .then(rows => {
                 return rows[0] 
             })
+    },
+    editNote(knex, id, updateNote) {
+        return knex('notes_table').where( { id }).update(updateNote)
     }
 }
 

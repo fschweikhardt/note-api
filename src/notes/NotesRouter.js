@@ -17,6 +17,7 @@ NotesRouter
 
 NotesRouter
     .route('/api/notes/:noteId')
+
     .get((req,res,next) => {
         const { noteId } = req.params
         NotesService.getNoteById(req.app.get('db'), noteId)
@@ -26,11 +27,37 @@ NotesRouter
             .catch(next)
 
     })
+
     .delete((req,res,next) => {
         const { noteId } = req.params
         NotesService.deleteNote(req.app.get('db'), noteId )
-            .catch(next)
+        .then(numRowsAffected => {
+            logger.info(`Note with id ${noteId} deleted.`)
+            res.status(204).end()
+        })
+        .catch(next)
     })
+
+    // .patch(bodyParser, (req,res,next) => {
+    //     const { noteId } = req.params
+    //     const { note_name, modified, content, folderid } = req.body
+    //     const updateNote = { note_name, modified, content, folderid } 
+    //     // const numberOfValues = Object.values(bookmarkToUpdate).filter(Boolean).length
+    //     //     if (numberOfValues === 0) {
+    //     //     logger.error(`Invalid update without required fields`)
+    //     //     return res.status(400).json({
+    //     //         error: {
+    //     //             message: `Request body must content either 'note_name' or 'content'`
+    //     //             }
+    //     //         })
+    //     //     }
+        
+    //     NotesService.editNote(req.app.get('db'), noteId, updateNote)
+    //     .then(numRowsAffected => {
+    //         res.status(204).end()
+    //       })
+    //     .catch(next)
+    // })
 
 NotesRouter
     .route('/api/add-note')
