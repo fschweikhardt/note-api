@@ -33,6 +33,9 @@ FoldersRouter
         const { title } = req.body
         const newFolder = { title }
         FoldersService.addFolder(req.app.get('db'), newFolder)
+            .then(folder => {
+                res.json(folder).status(201)
+            })
             .catch(next)
     })
 

@@ -31,10 +31,9 @@ NotesRouter
     .delete((req,res,next) => {
         const { noteId } = req.params
         NotesService.deleteNote(req.app.get('db'), noteId )
-        // .then(numRowsAffected => {
-        //     logger.info(`Note with id ${noteId} deleted.`)
-        //     res.status(204).end()
-        // })
+        .then(numRowsAffected => {
+            res.status(204).end()
+        })
         .catch(next)
     })
 
@@ -53,7 +52,8 @@ NotesRouter
             }
         
         NotesService.editNote(req.app.get('db'), req.params.noteId, updateNote)
-        .then(numRowsAffected => {
+        .then(note => {
+            res.json(note)
             res.status(204).end()
           })
         .catch(next)
@@ -66,6 +66,9 @@ NotesRouter
         const { note_name, modified, content, folderid } = req.body
         const newNote = { note_name, modified, content, folderid }
         NotesService.addNote(req.app.get('db'), newNote)
+            .then(note => {
+                res.json(note).status(201)
+            })
             .catch(next)
     })
 
