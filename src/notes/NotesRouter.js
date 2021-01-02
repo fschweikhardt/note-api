@@ -38,26 +38,26 @@ NotesRouter
         .catch(next)
     })
 
-    // .patch(bodyParser, (req,res,next) => {
-    //     const { noteId } = req.params
-    //     const { note_name, modified, content, folderid } = req.body
-    //     const updateNote = { note_name, modified, content, folderid } 
-    //     // const numberOfValues = Object.values(bookmarkToUpdate).filter(Boolean).length
-    //     //     if (numberOfValues === 0) {
-    //     //     logger.error(`Invalid update without required fields`)
-    //     //     return res.status(400).json({
-    //     //         error: {
-    //     //             message: `Request body must content either 'note_name' or 'content'`
-    //     //             }
-    //     //         })
-    //     //     }
+    .patch(bodyParser, (req,res,next) => {
+        const { note_name, modified, content, folderid } = req.body
+        const updateNote = { note_name, modified, content, folderid } 
+       
+        const numberOfValues = Object.values(updateNote).filter(Boolean).length
+            if (numberOfValues === 0) {
+            logger.error(`Invalid update without required fields`)
+            return res.status(400).json({
+                error: {
+                    message: `Request body must content either 'note_name' or 'content'`
+                    }
+                })
+            }
         
-    //     NotesService.editNote(req.app.get('db'), noteId, updateNote)
-    //     .then(numRowsAffected => {
-    //         res.status(204).end()
-    //       })
-    //     .catch(next)
-    // })
+        NotesService.editNote(req.app.get('db'), req.params.noteId, updateNote)
+        .then(numRowsAffected => {
+            res.status(204).end()
+          })
+        .catch(next)
+    })
 
 NotesRouter
     .route('/api/add-note')

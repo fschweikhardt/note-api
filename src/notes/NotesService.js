@@ -19,7 +19,7 @@ const NotesService = {
             })
     },
     editNote(knex, id, updateNote) {
-        return knex('notes_table').where( { id }).update(updateNote)
+        return knex('notes_table').where({ id }).update(updateNote)
     }
 }
 
