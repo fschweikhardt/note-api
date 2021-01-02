@@ -31,10 +31,10 @@ NotesRouter
     .delete((req,res,next) => {
         const { noteId } = req.params
         NotesService.deleteNote(req.app.get('db'), noteId )
-        .then(numRowsAffected => {
-            logger.info(`Note with id ${noteId} deleted.`)
-            res.status(204).end()
-        })
+        // .then(numRowsAffected => {
+        //     logger.info(`Note with id ${noteId} deleted.`)
+        //     res.status(204).end()
+        // })
         .catch(next)
     })
 
